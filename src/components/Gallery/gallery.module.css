@@ -1,0 +1,41 @@
+.photo {
+    width: auto;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.flex_gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.item {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    & .photo {
+        filter: brightness(0.5);
+    }
+    & .oculto {
+        opacity: 1;
+    }
+}
+
+.oculto {
+    opacity: 0;
+    color: aliceblue;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem; 
+    transition: all 0.3 ease-in-out;
+}
