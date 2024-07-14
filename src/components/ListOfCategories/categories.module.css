@@ -1,0 +1,9 @@
+.list {
+    width: 100%;
+}
+
+.item {
+    height: 100px;
+    padding: 8px 0;
+    font-weight: bold;
+}
