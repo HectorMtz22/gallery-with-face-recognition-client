@@ -6,10 +6,14 @@ function App () {
   getCategories()
     .then(data => console.log(data))
   return (
-    <>
-      <h1>Hello World</h1>
-      <ListOfCategories />
-    </>
+    <main className='body'>
+      <aside className='sidebar'>
+        <ListOfCategories />
+      </aside>
+      <main className='main-content'>
+        <h1>Hello World</h1>
+      </main>
+    </main>
   )
 }
 
