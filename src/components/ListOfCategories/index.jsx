@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getCategories } from '../../services/getCategories'
 import styles from './categories.module.css'
+import { Link } from 'wouter'
 
 const URI = import.meta.env.VITE_URI_SERVER
 
@@ -17,20 +18,20 @@ const ListOfCategories = () => {
   return (
     <main className={styles.list}>
       <h2>Categorias</h2>
-      <section className={styles.item}>
+      <Link className={styles.item} href='/'>
         <img
           src='https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png'
           alt='Todas las categorías'
           className={styles.image}
         />
         Todas
-      </section>
+      </Link>
       {
         categories.map(category => (
-          <section key={category} className={styles.item}>
+          <Link key={category} className={styles.item} href={`/categories/${category}`}>
             <img src={`${URI}/categories/${category}`} alt={`Categoría de ${category}`} className={styles.image} />
             {category}
-          </section>
+          </Link>
         ))
       }
     </main>
