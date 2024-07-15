@@ -1,17 +1,18 @@
 import styles from './dialog.module.css'
 
-const UploadDialog = () => {
+const UploadDialog = ({ onClose }) => {
   return (
-    <dialog open className={styles.dialog}>
+    <dialog className={styles.dialog}>
       <h2>Subir Imagen</h2>
       <form action='' className={styles.form}>
         <input
           type='file'
           name='file'
           id='file'
+          accept='image/*'
           required
         />
-        <button type='button'>Cerrar</button>
+        <button type='button' onClick={onClose}>Cerrar</button>
         <button className={styles.submit}>Enviar</button>
       </form>
     </dialog>
