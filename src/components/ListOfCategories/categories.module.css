@@ -45,6 +45,7 @@
 
 .submit_button {
     height: 50px;
+    margin: 0 auto;
     background-color: #2a830f;
     color: white;
     font-weight: bold;

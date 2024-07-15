@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import { getCategories } from '../../services/getCategories'
 import styles from './categories.module.css'
 import { Link, useLocation } from 'wouter'
+import UploadDialog from '../UploadDialog'
 
 const URI = import.meta.env.VITE_URI_SERVER
 
 const ListOfCategories = () => {
   const [categories, setCategories] = useState([])
   const [location, setLocation] = useLocation()
+  const [showModal, setShowModal] = useState(false)
   const categoryActive = location.split('/')[2]
 
   useEffect(() => {
@@ -19,6 +21,11 @@ const ListOfCategories = () => {
 
   return (
     <main className={styles.list}>
+      {
+        showModal && (
+          <UploadDialog onClose={() => setShowModal(false)} />
+        )
+      }
       <section>
         <h2>Categorias</h2>
         <Link className={styles.item} href='/'>
@@ -46,12 +53,9 @@ const ListOfCategories = () => {
         ))
       }
       </section>
-      <Link href='uploads'>
-        <button className={styles.submit_button}>
-
-          Subir imagen
-        </button>
-      </Link>
+      <button className={styles.submit_button} onClick={() => setShowModal(true)}>
+        Subir imagen
+      </button>
     </main>
 
   )
