@@ -19,16 +19,17 @@ const ListOfCategories = () => {
 
   return (
     <main className={styles.list}>
-      <h2>Categorias</h2>
-      <Link className={styles.item} href='/'>
-        <img
-          src='https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png'
-          alt='Todas las categorías'
-          className={styles.image}
-        />
-        Todas
-      </Link>
-      {
+      <section>
+        <h2>Categorias</h2>
+        <Link className={styles.item} href='/'>
+          <img
+            src='https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png'
+            alt='Todas las categorías'
+            className={styles.image}
+          />
+          Todas
+        </Link>
+        {
         categories.map(category => (
           <Link
             key={category}
@@ -44,6 +45,13 @@ const ListOfCategories = () => {
           </Link>
         ))
       }
+      </section>
+      <Link href='uploads'>
+        <button className={styles.submit_button}>
+
+          Subir imagen
+        </button>
+      </Link>
     </main>
 
   )
