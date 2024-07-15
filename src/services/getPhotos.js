@@ -9,6 +9,7 @@ export const getPhotos = async (category) => {
         url: `${URI}/uploads/${d.filename}`
       }))
       .filter(d => category ? d.classification === category : true)
+      .reverse()
     )
   console.log(data)
   return data
