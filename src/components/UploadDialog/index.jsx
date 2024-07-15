@@ -1,10 +1,18 @@
+import { uploadPhoto } from '../../services/uploadPhoto'
 import styles from './dialog.module.css'
 
 const UploadDialog = ({ onClose }) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const [file] = event.target.file.files
+    const data = await uploadPhoto(file)
+    console.log(data)
+    onClose()
+  }
   return (
     <dialog className={styles.dialog}>
       <h2>Subir Imagen</h2>
-      <form action='' className={styles.form}>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type='file'
           name='file'
