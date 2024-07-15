@@ -34,7 +34,7 @@ const ListOfCategories = () => {
           <Link
             key={category}
             className={`${styles.item} ${categoryActive === category ? styles.item_active : ''}`}
-            href={`/categories/${category}`}
+            href={`/category/${category}`}
           >
             <img
               src={`${URI}/categories/${category}`}

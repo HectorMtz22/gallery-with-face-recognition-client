@@ -13,13 +13,13 @@ function App () {
         <ListOfCategories />
       </aside>
       <main className='main-content'>
+        <h1>Galería</h1>
         <Switch>
           <Route path='/'>
-            <h1>Galería</h1>
             <Gallery />
           </Route>
           <Route path='/category/:id'>
-            {params => <h1>Category: {params.id}</h1>}
+            {params => <Gallery category={params.id} />}
           </Route>
         </Switch>
       </main>
