@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { getPhotos } from '../../services/getPhotos'
 import styles from './gallery.module.css'
 
-const Gallery = ({ category }) => {
+const Gallery = ({ category, invalidate }) => {
   const [photos, setPhotos] = useState([])
   useEffect(() => {
     getPhotos(category)
       .then(setPhotos)
-  }, [category])
+  }, [category, invalidate])
   return (
     <main className={styles.flex_gallery}>
       {

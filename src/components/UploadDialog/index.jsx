@@ -1,12 +1,13 @@
 import { uploadPhoto } from '../../services/uploadPhoto'
 import styles from './dialog.module.css'
 
-const UploadDialog = ({ onClose }) => {
+const UploadDialog = ({ onClose, setInvalidate }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const [file] = event.target.file.files
     const data = await uploadPhoto(file)
     console.log(data)
+    setInvalidate((prev) => !prev)
     onClose()
   }
   return (

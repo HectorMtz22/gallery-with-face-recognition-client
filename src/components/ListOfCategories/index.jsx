@@ -6,7 +6,7 @@ import UploadDialog from '../UploadDialog'
 
 const URI = import.meta.env.VITE_URI_SERVER
 
-const ListOfCategories = () => {
+const ListOfCategories = ({ setInvalidate }) => {
   const [categories, setCategories] = useState([])
   const [location, setLocation] = useLocation()
   const [showModal, setShowModal] = useState(false)
@@ -23,7 +23,7 @@ const ListOfCategories = () => {
     <main className={styles.list}>
       {
         showModal && (
-          <UploadDialog onClose={() => setShowModal(false)} />
+          <UploadDialog onClose={() => setShowModal(false)} setInvalidate={setInvalidate} />
         )
       }
       <section>

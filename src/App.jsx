@@ -1,25 +1,25 @@
 import './App.css'
 import Gallery from './components/Gallery'
 import ListOfCategories from './components/ListOfCategories'
-import { getCategories } from './services/getCategories'
 import { Route, Switch } from 'wouter'
+import { useState } from 'react'
 
 function App () {
-  getCategories()
-    .then(data => console.log(data))
+  const [invalidate, setInvalidate] = useState(false)
+
   return (
     <main className='body'>
       <aside className='sidebar'>
-        <ListOfCategories />
+        <ListOfCategories setInvalidate={setInvalidate} />
       </aside>
       <main className='main-content'>
         <h1>Galería</h1>
         <Switch>
           <Route path='/'>
-            <Gallery />
+            <Gallery invalidate={invalidate} />
           </Route>
           <Route path='/category/:id'>
-            {params => <Gallery category={params.id} />}
+            {params => <Gallery category={params.id} invalidate={invalidate} />}
           </Route>
         </Switch>
       </main>
