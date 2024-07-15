@@ -12,7 +12,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center;
 }
 
 .item {
@@ -38,4 +37,11 @@
     bottom: 1rem;
     left: 1rem; 
     transition: all 0.3 ease-in-out;
+}
+
+.center {
+    place-content: center;
+    height: 50vh;
+    margin: auto;
+    font-size: 50px;
 }

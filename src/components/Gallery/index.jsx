@@ -20,6 +20,15 @@ const Gallery = ({ category }) => {
           </section>
         ))
       }
+      {
+        photos.length === 0 && (
+          <h2 className={styles.center}>
+            No hay fotos para mostrar.
+            <br />
+            Intenta subir una imagen
+          </h2>
+        )
+      }
     </main>
   )
 }
