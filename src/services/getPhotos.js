@@ -14,3 +14,16 @@ export const getPhotos = async (category) => {
   console.log(data)
   return data
 }
+
+export const getPrimaryPhotoByCategoryId = async () => {
+  const response = await fetch(`${URI}/gallery`)
+  const data = await response.json()
+    .then(data => data.map(d => ({
+      ...d,
+      url: `${URI}/uploads/${d.filename}`
+    })))
+    .then(data => data.filter(({is_primary}) => is_primary))
+
+  console.log(data)
+  return data
+}
