@@ -37,18 +37,18 @@ const ListOfCategories = ({ setInvalidate }) => {
           Todas
         </Link>
         {
-        categories.map(category => (
+        categories.map(({id, name}) => (
           <Link
-            key={category}
-            className={`${styles.item} ${categoryActive === category ? styles.item_active : ''}`}
-            href={`/category/${category}`}
+            key={id}
+            className={`${styles.item} ${categoryActive === id ? styles.item_active : ''}`}
+            href={`/category/${id}`}
           >
             <img
-              src={`${URI}/categories/${category}`}
-              alt={`Categoría de ${category}`}
-              className={`${styles.image} ${categoryActive === category ? styles.image_active : ''}`}
+              src={`${URI}/categories/${id}`}
+              alt={`Categoría de ${name}`}
+              className={`${styles.image} ${categoryActive === id ? styles.image_active : ''}`}
             />
-            {category}
+            {name}
           </Link>
         ))
       }
