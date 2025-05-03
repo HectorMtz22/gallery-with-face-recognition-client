@@ -3,11 +3,13 @@ import { getCategories } from '../../services/getCategories'
 import styles from './categories.module.css'
 import { Link, useLocation } from 'wouter'
 import UploadDialog from '../UploadDialog'
+import { getPrimaryPhotoByCategoryId } from '../../services/getPhotos'
 
 const URI = import.meta.env.VITE_URI_SERVER
 
 const ListOfCategories = ({ setInvalidate }) => {
   const [categories, setCategories] = useState([])
+  const [photos, setPhotos] = useState([])
   const [location, setLocation] = useLocation()
   const [showModal, setShowModal] = useState(false)
   const categoryActive = location.split('/')[2]
@@ -16,6 +18,10 @@ const ListOfCategories = ({ setInvalidate }) => {
     getCategories()
       .then(response => {
         setCategories(response)
+      })
+    getPrimaryPhotoByCategoryId()
+      .then(response => {
+        setPhotos(response)
       })
   }, [])
 
@@ -37,21 +43,26 @@ const ListOfCategories = ({ setInvalidate }) => {
           Todas
         </Link>
         {
-        categories.map(category => (
-          <Link
-            key={category}
-            className={`${styles.item} ${categoryActive === category ? styles.item_active : ''}`}
-            href={`/category/${category}`}
-          >
-            <img
-              src={`${URI}/categories/${category}`}
-              alt={`Categoría de ${category}`}
-              className={`${styles.image} ${categoryActive === category ? styles.image_active : ''}`}
-            />
-            {category}
-          </Link>
-        ))
-      }
+          categories.map(({ id, name }) => {
+            const url = photos.filter(({ classification }) => classification === id)[0]?.url 
+              || 'https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_1280.png'
+
+            return (
+              <Link
+                key={id}
+                className={`${styles.item} ${categoryActive === id ? styles.item_active : ''}`}
+                href={`/category/${id}`}
+              >
+                <img
+                  src={url}
+                  alt={`Categoría de ${name}`}
+                  className={`${styles.image} ${categoryActive === id ? styles.image_active : ''}`}
+                />
+                {name}
+              </Link>
+            )
+          })
+        }
       </section>
       <button className={styles.submit_button} onClick={() => setShowModal(true)}>
         Subir imagen
